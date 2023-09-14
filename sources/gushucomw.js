@@ -36,9 +36,9 @@ const detail = (url) => {
     let $ = HTML.parse(response)
     let book = {
         summary: $('body > div.synopsisArea > p.review').text(),
-        status: $('body > div.synopsisArea > div > p:nth-child(4)').text(),
-        category: $('body > div.synopsisArea > div > p.sort').text(),
-        update: $('body > div.synopsisArea > div > p:nth-child(6)').text(),
+        status: $('body > div.synopsisArea > div > p:nth-child(4)').text().replace('状态：',''),
+        category: $('body > div.synopsisArea > div > p.sort').text().replace('类别：',''),
+        update: $('body > div.synopsisArea > div > p:nth-child(6)').text().replace('更新：',''),
         lastChapter: $('body > div.recommend > div.directoryArea > p:nth-child(1) > a').text(),
         catalog: url
     }
@@ -82,7 +82,7 @@ const chapter = (url) => {
     do
     {   let response = GET(url)
         let $ = HTML.parse(response)
-        con = con + ($('#chaptercontent'))
+        con = con + ($('#chaptercontent').remove('div,b').replace('本章未完，点击下一页继续阅读','').replace(/www.*.com/gi,'').replace('歌书网',''))
         if($('#pt_next').text()=='下一页') {
             url=`http://m.gashuw.com${$('#pt_next').attr('href')}`
         }
