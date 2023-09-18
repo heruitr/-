@@ -15,7 +15,6 @@ const search = (key) => {
         array.push({
             name: $(`.grid > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).text(),
             author: $(`.grid > tbody > tr:nth-child( ${i} ) > td:nth-child(3)`).toString().replace(/<([^>]+)>/g,''),
-            cover: '',
             status: $(`.grid > tbody > tr:nth-child(${i}) > td:nth-child(6)`).toString().replace(/<([^>]+)>/,''),
             detail: `${$(`.grid > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr("href")}`
         })
@@ -45,7 +44,6 @@ const detail = (url) => {
 
 /**
  * 目录
- *  > div:first-child > a:last-child
  * @params {string} url
  * @returns {[{name, url, vip}]}
  */
@@ -71,7 +69,6 @@ const catalog = (url) => {
  * @returns {string}
  */
 const chapter = (url) => {
-    let con = ''
     let response = GET(url)
     let $ = HTML.parse(response)
 
