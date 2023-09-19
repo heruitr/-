@@ -85,6 +85,6 @@ const chapter = (url) => {
 var bookSource = JSON.stringify({
     name: "八一中文",
     url: "http://www.zwduxs.com/",
-    version: 100,
+    version: 101,
 })
 
