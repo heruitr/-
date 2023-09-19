@@ -10,18 +10,25 @@ const search = (key) => {
     })
     let $ = HTML.parse(response)
     let array = []
-    let num = $(".grid >tbody  tr").length
-    for (let i = 2; i < num; i++) {
+    let str=$(".grid ").toString().replace(/td/g,'a').replace(/tr/g,'div')
+    let h = HTML.parse(str)
+
+    h('div').forEach( child => {
+        let $ = HTML.parse(child)
         array.push({
-            name: $(`.grid > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).text(),
-            author: $(`.grid > tbody > tr:nth-child( ${i} ) > td:nth-child(3)`).toString().replace(/<([^>]+)>/g,''),
-            status: $(`.grid > tbody > tr:nth-child(${i}) > td:nth-child(6)`).toString().replace(/<([^>]+)>/,''),
-            detail: `${$(`.grid > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr("href")}`
+            name: $('div:nth-child(1) > a:nth-child(2)').text(),
+            author: $(` div:nth-child(1) > a:nth-child(2)`).text(),
+            status: $(` div:nth-child(1) > a:nth-child(8)`).text(),
+            detail: `${$(` div:nth-child(1) > a:nth-child(2)`).attr("href")}`
         })
+
+        }
+    )
+    return JSON.stringify(array)
     }
 
-    return JSON.stringify(array)
-}
+
+
 
 /**
  * 详情
