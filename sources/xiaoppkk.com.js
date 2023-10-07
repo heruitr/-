@@ -116,7 +116,7 @@ const decrypt = function(str)  {
 
 
 var bookSource = JSON.stringify({
-    name: "9x阅读器2",
+    name: "9x阅读器",
     url: "xiaoppkk.com",
-    version: 100
+    version: 101
 })
